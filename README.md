@@ -1,7 +1,3 @@
-# About Mass DVA
-
-* This script allows staff members (Or everyone if wanted) to do clear the server they are on with /dva deleting all vehicles in the server that don't have a player in the vheicle.
-
 # How to Install
 
 <details><summary>How to Install Files</summary>
