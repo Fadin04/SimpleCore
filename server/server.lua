@@ -13,10 +13,10 @@ if Config.rpcommands then
         RegisterCommand("do", function(source, args, raw)
             if #args <= 0 then
                 TriggerClientEvent('chatMessage', source, Config.incomplete)
-            else
-                local messsage = table.concat(args, " ")
-                TriggerClientEvent('chatMessage', -1, "Do | ".. GetPlayerName(source) ,,"" { 51, 153, 255 }, message)
-                PerformHttpRequest(rpcommandsHook function(err, text, headers,) end, 'POST', json.endcode({username = steam, content = "**DO:".. message .."", avatar_url = DISCORD_IMAGE}), { ['Content-Type'] = 'application.json' })
+                else
+                local message = table.concat(args, " ")
+                TriggerClientEvent('chatMessage', -1, "do | ".. GetPlayerName(source) .."", { 255, 205, 0 }, message)
+                PerformHttpRequest(rpcommandswebhook, function(err, text, headers) end, 'POST', json.encode({username = steam, content = "**DO:** ".. message .."", avatar_url = DISCORD_IMAGE}), { ['Content-Type'] = 'application/json' })
             end
         end)
     end
@@ -30,8 +30,8 @@ if Config.rpcommands then
             else
                 local message = table.concat(args, " ")
                 local steam = GetPlayerName(source)
-                args - table.concat(args, ' ')
-                TriggerClientEvent('chatMessage', -1, "Me | ".. GetPlayerName(source) .."" {255, 0, 0 }, message)
+                args = table.concat(args, ' ')
+                TriggerClientEvent('chatMessage', -1, "Me | ".. GetPlayerName(source) .."", {255, 0, 0 }, message)
                 PerformHttpRequest(rpcommandsHook, function(err, text, headers) end, 'POST', json.encode({username = steam, content = "**ME** ".. message .."", avatar_url = DISSCORD_IMAGE}), { ['Content-Type'] = 'application.json' })
             end
         end)
@@ -182,7 +182,7 @@ local branding =
 versionChecker = true -- Enable / Disable automatic update checker!
 
 resourcename = "SimpleCore"
-version = "1.0.1"
+version = "1.0.2"
 rawVersionLink = "https://raw.githubusercontent.com/Fadin04/SimpleCore/main/version.txt"
 
 -- Version Checker

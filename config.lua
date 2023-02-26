@@ -1,8 +1,8 @@
-----------------------------------------
---     Developed by Fadin_laws        --
+-------------------------------------------
+--        Developed by Fadin_laws        --
 -- https://github.com/Fadin04/SimpleCore --
---          Version 1.0.1             --
-----------------------------------------
+--            Version 1.0.2              --
+-------------------------------------------
 
 
 Config = {}
@@ -15,7 +15,7 @@ Config.dvaCommand = true -- This will enable / disable the ability to use the /d
 Config.delay = 30 -- Amount of time before the vehicles are all deleted.
 Config.delaymessage = "^0[Server]^1 All unoccupied vehicles are going to be deleted in".. Config.delay .."seconds!"
 Config.deletemessage = "^0[Server]^1 All unoccupided vehicles have been deleted by a member fo the staff team!"
-Config.commandname = "dva", -- This command is what you will type into chat (/dva) to use start it!
+Config.commandname = "dva" -- This command is what you will type into chat (/dva) to use start it!
 Config.restrictcommand = true
 -- Setting this to FALSE will allow anyone in your server to use the command!
 -- If this is set to TRUE, you can add peple to use it using: add_ace group.<name> command.<name> allow
