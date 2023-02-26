@@ -10,12 +10,12 @@ Config.pvp = true -- Enable / Disable PVP
 
 -- DVA Config
 Config.dvaCommand = true -- This will enable / disable the ability to use the /dva command!
-Config.delay = 15 -- Amount of time before the vehicles are all deleted.
+Config.delay = 30 -- Amount of time before the vehicles are all deleted.
 Config.delaymessage =
-    "^0[Server]: ^1 All unoccupied vehicles are going to be deleted in " ..
+    "^1[Server]: ^1 All unoccupied vehicles are going to be deleted in " ..
         Config.delay .. " seconds!"
 Config.deletemessage =
-    "^0[Server]: ^1 All unoccupided vehicles have been deleted by a member fo the staff team!"
+    "^1[Server]: ^1 All unoccupided vehicles have been deleted by a member of the staff team!"
 Config.commandName = "dva" -- This command is what you will type into chat (/dva) to use start it!
 Config.restrictcommand = true
 -- Setting this to FALSE will allow anyone in your server to use the command!
@@ -74,3 +74,11 @@ Config.autoMessages =
         ' Welcome to ^1Server! ^0Enjoy your time here!',
         ' We RP Serious! ^1Be nice!'
     }
+
+-- 911 Script
+
+Config.Nine11 = true -- Enable / Disable the 911 script!
+Config.blipTime = 1800 -- Amount of time that the blip will show on the map
+Config.blipRadius = 175.0 -- Size of the blip itself.
+Config.callBlips = true -- Enable / Disable the map blips
+Config.DisableCallsInChat = false -- Enable / Disable 911 calls showing in chat!
