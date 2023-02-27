@@ -87,7 +87,7 @@ Config.blipTime = 180 -- Amount of time that the blip will show on the map
 Config.blipRadius = 175.0 -- Size of the blip itself.
 Config.callBlips = true -- Enable / Disable the map blips
 Config.DisableCallsInChat = false -- Enable / Disable 911 calls showing in chat!
-Config.911webhook = 'CHANGEME' -- Channel that 911 calls will be sent to
+Config.nine11webhook = 'CHANGEME' -- Channel that 911 calls will be sent to
 
 -- SeatShuffling
 -- Config.shuffKeybind = 61 -- (Left Shift) FiveM Keys: https://docs.fivem.net/docs/game-references/controls/      
