@@ -3,9 +3,9 @@ if Config.dvaCommand then
     local delay2 = Config.delay * 1000
     RegisterNetEvent("SMC:dva")
     AddEventHandler("SMC:dva", function()
-        TriggerEvent('chatMessage', Config.delaymessage)
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'^1[Server]', Config.delaymessage}})
         Wait(delay2)
-        TriggerEvent('chatMessage', Config.deletemessage)
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'^1[Server]', Config.deletemessage}})
         local totalvehc = 0
         local notdelvehc = 0
 
@@ -66,7 +66,7 @@ if Config.autoMessage then
     Citizen.CreateThread(function()
         while true do
             function chat(i)
-                TriggerEvent('chatMessage', '', {255,255,255}, Config.autoPrefix .. Config.autoMessages[i])
+                TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {Config.autoPrefix, Config.autoMessages[i]}})
             end
             for i in pairs(Config.autoMessages) do
                     chat(i)
@@ -112,9 +112,9 @@ RegisterCommand(Config.fixName, function(source, args, rawCommand)
     if vehicle ~= nil then
         SetVehicleEngineHealth(vehicle, 100)
         SetVehicleFixed(vehicle)
-        TriggerEvent('chatMessage', '', {255, 255, 255}, 'Vehicle fixed!')
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'SimpleCore', 'Vehicle fixed!'}})
     else
-        TriggerEvent('chatMessage', '', {255, 255, 255}, 'You must be in a vehicle to use this command!')
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'SimpleCore', 'You must be in a vehicle to use this command!'}})
     end
 end)
 
@@ -124,9 +124,9 @@ RegisterCommand(Config.cleanName, function(source, args, rawCommand)
     local vehicle = GetVehiclePedIsIn(PlayerPedId())
     if vehicle ~= nil then
         SetVehicleDirtLevel(vehicle, 0)
-        TriggerEvent('chatMessage', '', {255, 255, 255}, 'Vehicle cleaned!')
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'SimpleCore', 'Vehicle cleaned!'}})
     else
-        TriggerEvent('chatMessage', '', {255, 255, 255}, 'You must be in a vehicle to use this command!')
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'SimpleCore', 'You must be in a vehicle to use this command!'}})
     end
 end)
 
@@ -148,7 +148,7 @@ end
     local msg = table.concat(args, ' ')
     
         if args[1] == nil then
-            TriggerEvent('chatMessage', '^5San Andreas 911', {255, 255, 255}, 'What is the nature and location of your emergency?')
+            TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'^5San Andreas 911', 'What is the nature and location of your emergency?'}})
         end
         if args[1] ~= nil then
             TriggerServerEvent('SMC:911call', location, msg, x, y, z, name)

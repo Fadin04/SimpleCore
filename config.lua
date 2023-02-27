@@ -12,10 +12,9 @@ Config.pvp = true -- Enable / Disable PVP
 Config.dvaCommand = true -- This will enable / disable the ability to use the /dva command!
 Config.delay = 30 -- Amount of time before the vehicles are all deleted.
 Config.delaymessage =
-    "^1[Server]: ^1 All unoccupied vehicles are going to be deleted in " ..
-        Config.delay .. " seconds!"
+    "^1 All unoccupied vehicles are going to be deleted in " .. Config.delay .. " seconds!"
 Config.deletemessage =
-    "^1[Server]: ^1 All unoccupided vehicles have been deleted by a member of the staff team!"
+    "^1 All unoccupied vehicles have been deleted by a member of the staff team!"
 Config.commandName = "dva" -- This command is what you will type into chat (/dva) to use start it!
 Config.restrictcommand = true
 -- Setting this to FALSE will allow anyone in your server to use the command!
