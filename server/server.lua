@@ -285,7 +285,7 @@ if Config.nine11 then
                 },
             }
         }
-        PerformHttpRequest(Config.911webhook, function(err, text, headers) end, 'POST',
+        PerformHttpRequest(Config.nine11webhook, function(err, text, headers) end, 'POST',
                            json.encode({username = name, embeds = content}),
                            {['Content-Type'] = 'application/json'})
     end
