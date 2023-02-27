@@ -33,8 +33,7 @@ if Config.ragdoll then
         while true do
             Citizen.Wait(0)
             if IsControlPressed(1, Config.keybind) then
-                SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, true, true,
-                                false)
+                SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, true, true, false)
             end
         end
     end)
@@ -65,19 +64,19 @@ end
 if Config.autoMessage then
     local timeout = Config.autoDelay * 1000 * 60
     Citizen.CreateThread(function()
-            while true do
-                function chat(i)
-                    TriggerEvent('chatMessage', '', {255,255,255}, Config.autoPrefix .. Config.autoMessages[i])
-                end
-                for i in pairs(Config.autoMessages) do
-                        chat(i)
-                    Citizen.Wait(timeout)
-                end
-                
-                Citizen.Wait(50)
+        while true do
+            function chat(i)
+                TriggerEvent('chatMessage', '', {255,255,255}, Config.autoPrefix .. Config.autoMessages[i])
             end
-        end)
-    end
+            for i in pairs(Config.autoMessages) do
+                    chat(i)
+                Citizen.Wait(timeout)
+            end
+            
+            Citizen.Wait(50)
+        end
+    end)
+end
 
 -- Server PVP
 
@@ -101,8 +100,35 @@ if Config.rpcommands then
         TriggerEvent('chat:addSuggestion', '/dispatch', 'Call something into dispatch via the chat!', { name = "Dispatch", help = "Dispatch units to a ongoing situation!"})
         TriggerEvent('chat:addSuggestion', '/radio', 'Call something into your leo buddies via the chat!', { name = "Radio", help = "Communicate with other law enforcement officers!"})
         TriggerEvent('chat:addSuggestion', '/ooc', 'Say something out of character!', { name = "Speak Freely", help = "Talk in the server's chat without the  need of being in character!"})
+        TriggerEvent('chat:addSuggestion', '/fix', 'Fix your vehicle!', { name = "Vehicle Action", help = "Fix the vehicle you are currently occupying!"})
+        TriggerEvent('chat:addSuggestion', '/clean', 'Clean your vehicle!', { name = "Vehicle Actiion", help = "Clean the vehicle your are currently occupying!"})
     end)
 end
+
+-- Fix vehicle
+
+RegisterCommand(Config.fixName, function(source, args, rawCommand)
+    local vehicle = GetVehiclePedIsIn(PlayerPedId())
+    if vehicle ~= nil then
+        SetVehicleEngineHealth(vehicle, 100)
+        SetVehicleFixed(vehicle)
+        TriggerEvent('chatMessage', '', {255, 255, 255}, 'Vehicle fixed!')
+    else
+        TriggerEvent('chatMessage', '', {255, 255, 255}, 'You must be in a vehicle to use this command!')
+    end
+end)
+
+-- Clean vehicle
+
+RegisterCommand(Config.cleanName, function(source, args, rawCommand)
+    local vehicle = GetVehiclePedIsIn(PlayerPedId())
+    if vehicle ~= nil then
+        SetVehicleDirtLevel(vehicle, 0)
+        TriggerEvent('chatMessage', '', {255, 255, 255}, 'Vehicle cleaned!')
+    else
+        TriggerEvent('chatMessage', '', {255, 255, 255}, 'You must be in a vehicle to use this command!')
+    end
+end)
 
 -- 911 Script
 
@@ -110,7 +136,7 @@ if chatSuggestion then
     TriggerEvent("chat:addSuggestion", "/911", "Call 911 for your emergency!", {
         { name = "Emergency", help = "Describe your emergency here!"}
     })
-    end
+end
     
     RegisterCommand('911', function(source, args)
         

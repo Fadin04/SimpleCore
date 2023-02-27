@@ -48,6 +48,8 @@ Config.dispatch = true -- Enable / Disable the /dispatch command
 Config.radio = true -- Enable / Disable the /radio command
 Config.ooc = true -- Enable / Disable the /ooc command
 Config.staff = true -- Enable / Disable the /staff command
+Config.fix = true -- Enable / Disable the /fix command
+Config.clean = true -- Enable / Disable the /clean command
 -- Setting this to FALSE will allow anyone in your server to use the command!
 -- If this is set to TRUE, you can add peple to use it using: add_ace group.<name> command.<name> allow
 -- Ace Permission example: add_ace group.staff command.staff allow
@@ -64,6 +66,8 @@ Config.instaName = "instagram"
 Config.dispatchName = "dispatch"
 Config.radioName = "radio"
 Config.staffName = "staff"
+Config.fixName = "fix"
+Config.cleanName = "clean"
 
 -- Automessage(s)
 Config.autoMessage = true -- Enable / Disable the automessaging function
