@@ -1,16 +1,17 @@
 fx_version "cerulean"
 game "gta5"
 
-author "Fadin_laws"
+name "SimpleCore"
+author "𝓕𝓪𝓭𝓲𝓷_𝓵𝓪𝔀𝓼#0001"
 description 'SimpleCore for your Server!'
-version "1.0.3"
-
-server_scripts {
-    "config.lua",
-    "server/*.lua"
-}
+version "v1.0.4"
 
 client_scripts {
     "config.lua",
     "client/*.lua",
+}
+
+server_scripts {
+    "config.lua",
+    "server/*.lua",
 }

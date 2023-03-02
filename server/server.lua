@@ -1,14 +1,8 @@
-rpcommandsHook =
-    'https://discord.com/api/webhooks/1079303560468123749/-a_uFcYl3I6DYJL329WZRGqR04ZjxMdseG4BDG-twEcmTqHkT7jzTjl5nXHDqGzQMxpD'
--- Change this to the channel webhook you are wanting to send logs to!
-
 -- DVA Command
 if Config.dvaCommand then
-    RegisterCommand(Config.commandName, function(source, args, rawCommand)
-        if IsPlayerAceAllowed(source, "staff") then
-            TriggerClientEvent("SMC:dva", -1)
-        end
-    end, false)
+    RegisterCommand(Config.commandname, function(source, args, rawCommand) 
+        TriggerClientEvent("SIM:dva", -1) 
+    end, Config.restrictcommand)
 end
 -- Roleplay Commands
 
@@ -46,7 +40,7 @@ if Config.rpcommands then
                 TriggerClientEvent('chatMessage', -1,
                                    "ME | " .. GetPlayerName(source) .. "",
                                    {255, 0, 0}, message)
-                PerformHttpRequest(rpcommandsHook,
+                PerformHttpRequest(Config.rpcommandsHook,
                                    function(err, text, headers) end, 'POST',
                                    json.encode({
                     username = steam,
@@ -70,7 +64,7 @@ if Config.rpcommands then
                 TriggerClientEvent('chatMessage', -1,
                                    "GME | " .. GetPlayerName(source) .. "",
                                    {0, 255, 9}, message)
-                PerformHttpRequest(rpcommandsHook,
+                PerformHttpRequest(Config.rpcommandsHook,
                                    function(err, text, headers) end, 'POST',
                                    json.encode({
                     username = steam,
@@ -94,7 +88,7 @@ if Config.rpcommands then
                 TriggerClientEvent('chatMessage', -1,
                                    "OOC | " .. GetPlayerName(source) .. "",
                                    {128, 128, 128}, message)
-                PerformHttpRequest(rpcommandsHook,
+                PerformHttpRequest(Config.rpcommandsHook,
                                    function(err, text, headers) end, 'POST',
                                    json.encode({
                     username = steam,
@@ -118,7 +112,7 @@ if Config.rpcommands then
                 TriggerClientEvent('chatMessage', -1,
                                    "TWITTER | " .. GetPlayerName(source) .. "",
                                    {30, 144, 255}, message)
-                PerformHttpRequest(rpcommandsHook,
+                PerformHttpRequest(Config.rpcommandsHook,
                                    function(err, text, headers) end, 'POST',
                                    json.encode({
                     username = steam,
@@ -141,7 +135,7 @@ if Config.rpcommands then
                 args = table.concat(args, ' ')
                 TriggerClientEvent('chatMessage', -1, "Dark Web", {33, 33, 38},
                                    message)
-                PerformHttpRequest(rpcommandsHook,
+                PerformHttpRequest(Config.rpcommandsHook,
                                    function(err, text, headers) end, 'POST',
                                    json.encode({
                     username = steam,
@@ -165,7 +159,7 @@ if Config.rpcommands then
                 TriggerClientEvent('chatMessage', -1, "INSTAGRAM | " ..
                                        GetPlayerName(source) .. "",
                                    {194, 255, 51}, message)
-                PerformHttpRequest(rpcommandsHook,
+                PerformHttpRequest(Config.rpcommandsHook,
                                    function(err, text, headers) end, 'POST',
                                    json.encode({
                     username = steam,
@@ -187,7 +181,7 @@ if Config.rpcommands then
                 TriggerClientEvent('chatMessage', -1, "Dispatch | " ..
                                        GetPlayerName(source) .. "",
                                    {30, 144, 255}, message)
-                PerformHttpRequest(rpcommandsHook,
+                PerformHttpRequest(Config.rpcommandsHook,
                                    function(err, text, headers) end, 'POST',
                                    json.encode({
                     username = steam,
@@ -209,7 +203,7 @@ if Config.rpcommands then
                 TriggerClientEvent('chatMessage', -1,
                                    "Radio | " .. GetPlayerName(source) .. "",
                                    {255, 205, 0}, message)
-                PerformHttpRequest(rpcommandsHook,
+                PerformHttpRequest(Config.rpcommandsHook,
                                    function(err, text, headers) end, 'POST',
                                    json.encode({
                     username = steam,
@@ -223,7 +217,7 @@ end
 
 if Config.rpcommands then
     if Config.staff then
-        RegisterCommand(Config.staffName, function(source, args, raw)
+        RegisterCommand(Config.staffCommand, function(source, args, raw)
             if #args <= 0 then
                 TriggerClientEvent('chatMessage', source, Config.incomplete)
             else
@@ -233,7 +227,7 @@ if Config.rpcommands then
                 TriggerClientEvent('chatMessage', -1,
                                    "STAFF | " .. GetPlayerName(source) .. "",
                                    {255, 215, 0}, message)
-                PerformHttpRequest(rpcommandsHook,
+                PerformHttpRequest(Config.rpcommandsHook,
                                    function(err, text, headers) end, 'POST',
                                    json.encode({
                     username = steam,
@@ -246,46 +240,60 @@ if Config.rpcommands then
 end
 
 -- 911 Command
-webhookUrl = 'CHANGEME'
 
-RegisterServerEvent('SMC:911call')
-AddEventHandler('SMC:911call', function(location, msg, x, y, z, name, p)
-	
-	local pName = GetPlayerName(source)
-	local p = GetPlayerPed(source)
+if Config.nine11 then
+    RegisterServerEvent('SIM:911call')
+    AddEventHandler('SIM:911call', function(location, msg, x, y, z, name, p)
 
-		if Config.DisableCallsInChat == false then
-				TriggerClientEvent('chatMessage', -1, '^5----------------------------------------------', {0, 255, 238})
-				TriggerClientEvent('chatMessage', -1, '^*^5|| New 911 Report:', {0, 255, 238})
-				TriggerClientEvent('chatMessage', -1, '^*^5|| [Caller Name]^r^7', {0, 255, 238}, pName .. " (" .. source .. ")")
-				TriggerClientEvent('chatMessage', -1, '^*^5|| [Location]^r^7', {0, 255, 238}, location)
-				TriggerClientEvent('chatMessage', -1, '^*^5|| [Report]^r^7', {0, 255, 238}, msg)
-				TriggerClientEvent('chatMessage', -1, '^5----------------------------------------------', {0, 255, 238})
-			end
-			sendDiscord('911 Call Logger \n', '**Caller Name: **' .. pName .. ' (' .. source .. ') \n**  Location: **' .. location .. '\n**  Report: **' .. msg)
-		
-		if callBlips == true then
-				TriggerClientEvent('setBlip', -1, name, x, y, z)
-		end
-end)
+        local pName = GetPlayerName(source)
+        local p = GetPlayerPed(source)
 
-function sendDiscord(name, message)
-	local content = {
-        {
-        	["color"] =  "5263615",
-            ["title"] = "**New 911 Call Reported**",
-            ["description"] = message,
-            ["footer"] = "**Powered by SimpleCore**"
+        if Config.DisableCallsInChat == false then
+            TriggerClientEvent('chatMessage', -1,
+                               '^5----------------------------------------------',
+                               {0, 255, 238})
+            TriggerClientEvent('chatMessage', -1, '^*^5📞 New 911 Report:',
+                               {0, 255, 238})
+            TriggerClientEvent('chatMessage', -1, '^*^5🧍‍♂️ [Caller Name]^r^7',
+                               {0, 255, 238}, pName .. " (" .. source .. ")")
+            TriggerClientEvent('chatMessage', -1, '^*^5🗺️ [Location]^r^7',
+                               {0, 255, 238}, location)
+            TriggerClientEvent('chatMessage', -1, '^*^5⚠️ [Report]^r^7',
+                               {0, 255, 238}, msg)
+            TriggerClientEvent('chatMessage', -1,
+                               '^5----------------------------------------------',
+                               {0, 255, 238})
+        end
+        sendDiscord('911 Call Logger \n',
+                    '**Caller Name: **' .. pName .. ' (' .. source ..
+                        ') \n**  Location: **' .. location .. '\n**  Report: **' ..
+                        msg)
+
+        if Config.callBlips == true then
+            TriggerClientEvent('SIM:911call', -1, name, x, y, z)
+        end
+    end)
+
+    function sendDiscord(name, message)
+        local content = {
+            {
+                ["color"] = "5263615",
+                ["title"] = "**New 911 Call Reported**",
+                ["description"] = message,
+                ["footer"] = {
+                    ["text"] = "Powered by SimpleCore",
+                },
+            }
         }
-    }
-  	PerformHttpRequest(webhookUrl, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = content}), { ['Content-Type'] = 'application/json' })
+        PerformHttpRequest(Config.nine11webhook, function(err, text, headers) end, 'POST',
+                           json.encode({username = name, embeds = content}),
+                           {['Content-Type'] = 'application/json'})
+    end
 end
-
 
 -- Misc Settings
 
-local branding = 
-[[
+local branding = [[
     //
     ||
     ||    _____  __  _____      _____   __   _____ 
@@ -300,11 +308,10 @@ local branding =
     \\
 ]]
 
-
 versionChecker = true -- Enable / Disable automatic update checker!
 
 resourcename = "SimpleCore"
-version = "1.0.3"
+version = "1.0.4"
 rawVersionLink =
     "https://raw.githubusercontent.com/Fadin04/SimpleCore/main/version.txt"
 

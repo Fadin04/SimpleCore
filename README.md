@@ -13,3 +13,22 @@
 
 # About SimpleCore
 * *Simple core was created to allow developers of fivem servers to have a simple script that can do everything. (Everything in terms of roleplay needs)*
+
+# SimpleCore Settings
+
+## Available Scripts
+* [X] PVP Script
+* [X] /DVA Command
+* [X] Ragdoll Scipt 
+* [X] Server Watermark
+* [X] Auto Message(s)
+* [X] 911 Command with logging
+* [X] Roleplay Commands with logging.
+
+
+## Upcoming Scripts
+* [] Tase Effects when tased
+* [] Anti-Seatshuffle script
+* [] Anti-Combat Rolling script
+
+* All scripts that are available are able to be configured in the config.lua! Do not touch any other file, all you have to touch is the config.lua.
