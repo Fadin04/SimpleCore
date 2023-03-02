@@ -21,11 +21,10 @@ Config.taseEffects = true -- Enable / Disable the effects from being tased.
 -- DVA Config
 Config.delay = 30 -- Amount of time before the vehicles are all deleted.
 Config.delaymessage =
-    "^1[Server]: ^1 All unoccupied vehicles are going to be deleted in " ..
-        Config.delay .. " seconds!"
+    "^1 All unoccupied vehicles are going to be deleted in " .. Config.delay .. " seconds!"
 Config.deletemessage =
-    "^1[Server]: ^1 All unoccupided vehicles have been deleted by a member of the staff team!"
-Config.commandname = "dva" -- This command is what you will type into chat (/dva) to use start it!
+    "^1 All unoccupied vehicles have been deleted by a member of the staff team!"
+Config.commandName = "dva" -- This command is what you will type into chat (/dva) to use start it!
 Config.restrictcommand = true
 -- Setting this to FALSE will allow anyone in your server to use the command!
 -- If this is set to TRUE, you can add peple to use it using: add_ace group.<name> command.<name> allow
@@ -54,6 +53,8 @@ Config.dispatch = true -- Enable / Disable the /dispatch command
 Config.radio = true -- Enable / Disable the /radio command
 Config.ooc = true -- Enable / Disable the /ooc command
 Config.staff = true -- Enable / Disable the /staff command
+Config.fix = true -- Enable / Disable the /fix command
+Config.clean = true -- Enable / Disable the /clean command
 Config.staffCommand = "staff"
 Config.usePerms = true
 -- Setting this to FALSE will allow anyone in your server to use the command!
@@ -71,6 +72,9 @@ Config.darkwebName = "darkweb"
 Config.instaName = "instagram"
 Config.dispatchName = "dispatch"
 Config.radioName = "radio"
+Config.staffName = "staff"
+Config.fixName = "fix"
+Config.cleanName = "clean"
 Config.rpcommandsHook = 'CHANGEME' -- Channel that rp commands will be sent to when they are executed.
 
 -- Automessage(s)

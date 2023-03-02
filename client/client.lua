@@ -1,11 +1,11 @@
 -- DVA Command
 if Config.dvaCommand then
     local delay2 = Config.delay * 1000
-    RegisterNetEvent("SIM:dva")
-    AddEventHandler("SIM:dva", function()
-        TriggerEvent('chatMessage', Config.delaymessage)
+    RegisterNetEvent("SMC:dva")
+    AddEventHandler("SMC:dva", function()
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'^1[Server]', Config.delaymessage}})
         Wait(delay2)
-        TriggerEvent('chatMessage', Config.deletemessage)
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'^1[Server]', Config.deletemessage}})
         local totalvehc = 0
         local notdelvehc = 0
 
@@ -67,14 +67,12 @@ if Config.autoMessage then
     Citizen.CreateThread(function()
         while true do
             function chat(i)
-                TriggerEvent('chatMessage', '', {255, 255, 255},
-                             Config.autoPrefix .. Config.autoMessages[i])
+                TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {Config.autoPrefix, Config.autoMessages[i]}})
             end
             for i in pairs(Config.autoMessages) do
-                chat(i)
+                    chat(i)
                 Citizen.Wait(timeout)
             end
-
             Citizen.Wait(50)
         end
     end)
@@ -121,8 +119,39 @@ if Config.rpcommands then
         TriggerEvent('chat:addSuggestion', '/ooc', 'Say something out of character!', {
             {name = "Message", help = "Send your message from out of character into global chat."}
         })
+        TriggerEvent('chat:addSuggestion', '/fix', 'Fix your vehicle!', {
+            {name = "Vehicle Action", help = "Fix the vehicle you are currently occupying!"}
+        })
+        TriggerEvent('chat:addSuggestion', '/clean', 'Clean your vehicle!', {
+            {name = "Vehicle Actiion", help = "Clean the vehicle your are currently occupying!"}
+        })
     end)
 end
+
+-- Fix vehicle
+
+RegisterCommand(Config.fixName, function(source, args, rawCommand)
+    local vehicle = GetVehiclePedIsIn(PlayerPedId())
+    if vehicle ~= nil then
+        SetVehicleEngineHealth(vehicle, 100)
+        SetVehicleFixed(vehicle)
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'SimpleCore', 'Vehicle fixed!'}})
+    else
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'SimpleCore', 'You must be in a vehicle to use this command!'}})
+    end
+end)
+
+-- Clean vehicle
+
+RegisterCommand(Config.cleanName, function(source, args, rawCommand)
+    local vehicle = GetVehiclePedIsIn(PlayerPedId())
+    if vehicle ~= nil then
+        SetVehicleDirtLevel(vehicle, 0)
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'SimpleCore', 'Vehicle cleaned!'}})
+    else
+        TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'SimpleCore', 'You must be in a vehicle to use this command!'}})
+    end
+end)
 
 -- 911 Script
 
@@ -133,7 +162,6 @@ if Config.nine11 then
             {name = "Emergency", help = "Describe your emergency here!"}
         })
     end
-
     RegisterCommand('911', function(source, args)
 
         local name = GetPlayerName(PlayerId())
@@ -144,8 +172,7 @@ if Config.nine11 then
         local msg = table.concat(args, ' ')
 
         if args[1] == nil then
-            TriggerEvent('chatMessage', '^5San Andreas 911', {255, 255, 255},
-                         'What is the nature and location of your emergency?')
+            TriggerEvent('chat:addMessage', {color = {255, 255, 255}, multiline = false, args = {'^5San Andreas 911', 'What is the nature and location of your emergency?'}})
         end
         if args[1] ~= nil then
             TriggerServerEvent('SIM:911call', location, msg, x, y, z, name)
