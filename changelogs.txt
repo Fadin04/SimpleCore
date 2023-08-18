@@ -1,3 +1,0 @@
-1. Removed old code (Outdated)
-2. Added tazer effects for players tazed.
-3. Added anti-vehicle control in the air.
