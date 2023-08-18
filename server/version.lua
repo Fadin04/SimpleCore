@@ -20,7 +20,7 @@ versionChecker = true -- Set to false to disable version checker
 
 resourcename = "SimpleCore"
 version = "1.0.9"
-rawVersionLink = ""
+rawVersionLink = "https://raw.githubusercontent.com/Fadin04/SimpleCore/main/version.txt"
 
 -- Check for any updates regarding this resource.
 if versionChecker then
