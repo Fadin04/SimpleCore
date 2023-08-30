@@ -72,7 +72,7 @@
 * Added Blips to the map.
 
 
-### :hammer_pick: Configuration Options:
+### 🛠️ Configuration Options:
 * Enable / Disable RP Commands all together or specific /commands you want!
 * Easy to manage config.
 * Discord webhook integration
