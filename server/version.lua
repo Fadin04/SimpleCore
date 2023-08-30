@@ -39,7 +39,7 @@ Citizen.CreateThread(function()
 				end
 			else
 				print( branding )			
-				print('  ||    ^2SimpleCore is up to dat!!\n^0  ||\n  \\\\\n')
+				print('  ||    ^2SimpleCore is up to date!!\n^0  ||\n  \\\\\n')
 			end
 		else
 			print( branding )			
