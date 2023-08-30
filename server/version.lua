@@ -2,15 +2,15 @@
 
 local branding = 
 [[ 
-    //                                                  
-    ||     _____ _                 __     ______              
-    ||    / ___/(_)___ ___  ____  / /__  / ____/___  ________ 
-    ||    \__ \/ / __ `__ \/ __ \/ / _ \/ /   / __ \/ ___/ _ \
-    ||   ___/ / / / / / / / /_/ / /  __/ /___/ /_/ / /  /  __/
-    ||  /____/_/_/ /_/ /_/ .___/_/\___/\____/\____/_/   \___/ 
-    ||                  /_/                                   
-    ||                     Made by Fadin_laws
-    ||]]
+  //                                                  
+  ||     _____ _                 __     ______              
+  ||    / ___/(_)___ ___  ____  / /__  / ____/___  ________ 
+  ||    \__ \/ / __ `__ \/ __ \/ / _ \/ /   / __ \/ ___/ _ \
+  ||   ___/ / / / / / / / /_/ / /  __/ /___/ /_/ / /  /  __/
+  ||  /____/_/_/ /_/ /_/ .___/_/\___/\____/\____/_/   \___/ 
+  ||                  /_/                                   
+  ||                     Made by Fadin_laws
+  ||]]
 
 -- Check for version updates.
 
@@ -21,7 +21,7 @@ Citizen.CreateThread(function()
 	end
 
 	function VersionCheckHTTPRequest()
-		PerformHttpRequest('https://raw.githubusercontent.com/Fadin04/SimpleCore/main/simpleCore.json', VersionCheck, 'GET')
+		PerformHttpRequest('https://raw.githubusercontent.com/Fadin04/SimpleCore/master/simpleCore.json', VersionCheck, 'GET')
 	end
 
 	function VersionCheck(err, response, headers)
